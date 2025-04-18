@@ -1,12 +1,12 @@
-name: Deploy to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+name: Deploy Docusaurus to GitHub Pages
+
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -20,21 +20,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+          cache: 'npm'
       
       - name: Install dependencies
         run: npm install
       
-      - name: Build
-        run: npm run build
-      
       - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.name ${{ github.actor }}
-          git config --global user.email ${{ github.actor }}@users.noreply.github.com
-          git checkout --orphan gh-pages
-          git rm -rf .
-          mv build/* .
-          rm -rf build
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git push -f origin gh-pages
+        env:
+          GIT_USER: EducatedSuddenBucket
+          GIT_PASS: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run deploy
