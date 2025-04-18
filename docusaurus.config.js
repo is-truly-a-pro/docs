@@ -24,7 +24,7 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           editUrl:
-            'https://github.com/is-truly-a-pro/docs/edit',
+            'https://github.com/is-truly-a-pro/docs/edit/main',
           routeBasePath: '/',
         },
         blog: false,
