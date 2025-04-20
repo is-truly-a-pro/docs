@@ -1,6 +1,5 @@
 ---
-icon: /media/render.svg
-label: Render
+title: Render
 tags: [guides]
 ---
 
